@@ -27,14 +27,14 @@ options(error = function() {
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "HT6510"
+PARAM$experimento <- "HT6510_02"
 
-PARAM$exp_input <- "TS6410"
+PARAM$exp_input <- "TS6410_02"
 
 # En caso que se haga cross validation, se usa esta cantidad de folds
 PARAM$lgb_crossvalidation_folds <- 5
 
-PARAM$lgb_semilla <- 100043 # cambiar por su propia semilla
+PARAM$lgb_semilla <- 100043 # cambiar por su propia semilla!!!
 
 
 # Hiperparametros FIJOS de  lightgbm
@@ -101,7 +101,7 @@ GrabarOutput <- function() {
 # para el primer registro, escribe antes los titulos
 
 exp_log <- function(
-    reg, arch = NA, folder = "./exp/",
+    reg, arch = NA, folder = "./exp02/",
     ext = ".txt", verbose = TRUE) {
   archivo <- arch
   if (is.na(arch)) archivo <- paste0(folder, substitute(reg), ext)
@@ -453,7 +453,7 @@ setwd(PARAM$home)
 
 # cargo el dataset donde voy a entrenar
 # esta en la carpeta del exp_input y siempre se llama  dataset_training.csv.gz
-dataset_input <- paste0("./exp/", PARAM$exp_input, "/dataset_training.csv.gz")
+dataset_input <- paste0("./exp02/", PARAM$exp_input, "/dataset_training.csv.gz")
 dataset <- fread(dataset_input)
 
 dataset[, azar := NULL]
@@ -476,10 +476,10 @@ if (dataset[fold_train == 1, .N] == 0) {
 }
 
 # creo la carpeta donde va el experimento
-dir.create(paste0("./exp/", PARAM$experimento, "/"), showWarnings = FALSE)
+dir.create(paste0("./exp02/", PARAM$experimento, "/"), showWarnings = FALSE)
 
 # Establezco el Working Directory DEL EXPERIMENTO
-setwd(paste0("./exp/", PARAM$experimento, "/"))
+setwd(paste0("./exp02/", PARAM$experimento, "/"))
 
 GrabarOutput()
 write_yaml(PARAM, file = "parametros.yml") # escribo parametros utilizados

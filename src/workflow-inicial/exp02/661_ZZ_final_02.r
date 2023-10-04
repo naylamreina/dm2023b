@@ -35,8 +35,8 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "ZZ6610"
-PARAM$exp_input <- "HT6510"
+PARAM$experimento <- "ZZ6610_02"
+PARAM$exp_input <- "HT6510_02"
 
 # Atencion, que cada modelos se procesa con 5 semillas, ajuste a SUS necesidades
 # Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
@@ -80,31 +80,31 @@ OUTPUT$time$start <- format(Sys.time(), "%Y%m%d %H%M%S")
 base_dir <- "~/buckets/b1/"
 
 # creo la carpeta donde va el experimento
-dir.create(paste0(base_dir, "exp/", PARAM$experimento, "/"),
+dir.create(paste0(base_dir, "exp02/", PARAM$experimento, "/"),
   showWarnings = FALSE
 )
 
 # Establezco el Working Directory DEL EXPERIMENTO
-setwd(paste0(base_dir, "exp/", PARAM$experimento, "/"))
+setwd(paste0(base_dir, "exp02/", PARAM$experimento, "/"))
 
 GrabarOutput()
 write_yaml(PARAM, file = "parametros.yml") # escribo parametros utilizados
 
 # leo la salida de la optimizaciob bayesiana
-arch_log <- paste0(base_dir, "exp/", PARAM$exp_input, "/BO_log.txt")
+arch_log <- paste0(base_dir, "exp02/", PARAM$exp_input, "/BO_log.txt")
 tb_log <- fread(arch_log)
 setorder(tb_log, -ganancia)
 
 # leo el nombre del expermento de la Training Strategy
-arch_TS <- paste0(base_dir, "exp/", PARAM$exp_input, "/TrainingStrategy.txt")
+arch_TS <- paste0(base_dir, "exp02/", PARAM$exp_input, "/TrainingStrategy.txt")
 TS <- readLines(arch_TS, warn = FALSE)
 
 # leo el dataset donde voy a entrenar el modelo final
-arch_dataset <- paste0(base_dir, "exp/", TS, "/dataset_train_final.csv.gz")
+arch_dataset <- paste0(base_dir, "exp02/", TS, "/dataset_train_final.csv.gz")
 dataset <- fread(arch_dataset)
 
 # leo el dataset donde voy a aplicar el modelo final
-arch_future <- paste0(base_dir, "exp/", TS, "/dataset_future.csv.gz")
+arch_future <- paste0(base_dir, "exp02/", TS, "/dataset_future.csv.gz")
 dfuture <- fread(arch_future)
 
 # logical que me indica si los datos de future tienen la clase con valores,

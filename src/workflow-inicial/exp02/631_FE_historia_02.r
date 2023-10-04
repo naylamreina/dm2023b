@@ -17,9 +17,9 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "FE6310"
+PARAM$experimento <- "FE6310_02"
 
-PARAM$exp_input <- "DR6210"
+PARAM$exp_input <- "DR6210_02"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
@@ -454,7 +454,7 @@ setwd(PARAM$home)
 
 # cargo el dataset donde voy a entrenar
 # esta en la carpeta del exp_input y siempre se llama  dataset.csv.gz
-dataset_input <- paste0("./exp/", PARAM$exp_input, "/dataset.csv.gz")
+dataset_input <- paste0("./exp02/", PARAM$exp_input, "/dataset.csv.gz")
 
 dataset <- fread(dataset_input)
 
@@ -462,9 +462,9 @@ colnames(dataset)[which(!(sapply(dataset, typeof) %in% c("integer", "double")))]
 
 
 # creo la carpeta donde va el experimento
-dir.create(paste0("./exp/", PARAM$experimento, "/"), showWarnings = FALSE)
+dir.create(paste0("./exp02/", PARAM$experimento, "/"), showWarnings = FALSE)
 # Establezco el Working Directory DEL EXPERIMENTO
-setwd(paste0("./exp/", PARAM$experimento, "/"))
+setwd(paste0("./exp02/", PARAM$experimento, "/"))
 
 GrabarOutput()
 write_yaml(PARAM, file = "parametros.yml") # escribo parametros utilizados
