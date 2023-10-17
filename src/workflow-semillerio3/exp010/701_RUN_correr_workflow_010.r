@@ -7,7 +7,7 @@ options(error = function() {
 })
 
 
-# corrida de cada paso del workflow
+# corrida de cada paso del workflow nuevo 2
 
 # primeros pasos, relativamente rapidos
 source("~/dm2023b/src/workflow-semillerio/exp010/711_CA_reparar_dataset_010.r")
