@@ -16,9 +16,9 @@ require("yaml")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento  <- "DR7210_025"
+PARAM$experimento  <- "DR7210_026"
 
-PARAM$exp_input  <- "CA7110_025"
+PARAM$exp_input  <- "CA7110_026"
 
 PARAM$variables_intrames  <- TRUE   # atencion esto esta en TRUE
 
@@ -231,12 +231,12 @@ setwd(PARAM$home)
 
 #cargo el dataset donde voy a entrenar
 #esta en la carpeta del exp_input y siempre se llama  dataset.csv.gz
-dataset_input  <- paste0( "./exp025/", PARAM$exp_input, "/dataset.csv.gz" )
+dataset_input  <- paste0( "./exp026/", PARAM$exp_input, "/dataset.csv.gz" )
 dataset  <- fread( dataset_input )
 
 #creo la carpeta donde va el experimento
-dir.create( paste0( "./exp025/", PARAM$experimento, "/"), showWarnings = FALSE )
-setwd(paste0( "./exp025/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( paste0( "./exp026/", PARAM$experimento, "/"), showWarnings = FALSE )
+setwd(paste0( "./exp026/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
 
 GrabarOutput()
 write_yaml( PARAM, file= "parametros.yml" )   #escribo parametros utilizados
