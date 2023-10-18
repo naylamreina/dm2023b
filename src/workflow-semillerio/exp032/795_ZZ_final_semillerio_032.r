@@ -20,8 +20,8 @@ require("lightgbm")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento  <- "ZZ7950_029"
-PARAM$exp_input  <- "HT7510_029"
+PARAM$experimento  <- "ZZ7950_032"
+PARAM$exp_input  <- "HT7510_032"
 
 PARAM$modelos_rank  <- c( 1 )  #Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
 PARAM$semillerio  <- 20   # cantidad de semillas a utilizar en el semillerio, podrian ser 50 o 100 para mayor estabilidad
@@ -206,28 +206,28 @@ ksemillas  <- sample(primos)[ 1:PARAM$semillerio ]   #me quedo con PARAM$semille
 
 
 #creo la carpeta donde va el experimento
-dir.create( paste0( PARAM$home, "exp029/", PARAM$experimento, "/"), showWarnings= FALSE )
-setwd(paste0( PARAM$home, "exp029/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( paste0( PARAM$home, "exp032/", PARAM$experimento, "/"), showWarnings= FALSE )
+setwd(paste0( PARAM$home, "exp032/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
 
 
 GrabarOutput()
 write_yaml( PARAM, file= "parametros.yml" )   #escribo parametros utilizados
 
 #leo la salida de la optimizaciob bayesiana
-arch_log  <- paste0( PARAM$home, "exp029/", PARAM$exp_input, "/BO_log.txt" )
+arch_log  <- paste0( PARAM$home, "exp032/", PARAM$exp_input, "/BO_log.txt" )
 tb_log  <- fread( arch_log )
 setorder( tb_log, -ganancia )
 
 #leo el nombre del expermento de la Training Strategy
-arch_TS  <- paste0( PARAM$home, "exp029/", PARAM$exp_input, "/TrainingStrategy.txt" )
+arch_TS  <- paste0( PARAM$home, "exp032/", PARAM$exp_input, "/TrainingStrategy.txt" )
 TS  <- readLines( arch_TS, warn= FALSE )
 
 #leo el dataset donde voy a entrenar el modelo final
-arch_dataset  <- paste0( PARAM$home, "exp029/", TS, "/dataset_train_final.csv.gz" )
+arch_dataset  <- paste0( PARAM$home, "exp032/", TS, "/dataset_train_final.csv.gz" )
 dataset  <- fread( arch_dataset )
 
 #leo el dataset donde voy a aplicar el modelo final
-arch_future  <- paste0( PARAM$home, "exp029/", TS, "/dataset_future.csv.gz" )
+arch_future  <- paste0( PARAM$home, "exp032/", TS, "/dataset_future.csv.gz" )
 dfuture  <- fread( arch_future )
 
 # logical que me indica si los dtos de future tienen la clase con valores, y NO va para Kaggle

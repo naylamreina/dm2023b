@@ -15,7 +15,7 @@ require("yaml")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento  <- "CA7110_029"
+PARAM$experimento  <- "CA7110_032"
 PARAM$dataset  <- "./datasets/competencia_2023.csv.gz"
 
 PARAM$metodo  <- "MachineLearning"     #valores posibles  "MachineLearning"  "EstadisticaClasica" "Ninguno"
@@ -224,8 +224,8 @@ dataset[ , tmobile_app := NULL ]
 
 
 #creo la carpeta donde va el experimento
-dir.create( paste0( "./exp029/", PARAM$experimento, "/"), showWarnings = FALSE )
-setwd(paste0( "./exp029/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( paste0( "./exp032/", PARAM$experimento, "/"), showWarnings = FALSE )
+setwd(paste0( "./exp032/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
 
 GrabarOutput()
 write_yaml( PARAM, file= "parametros.yml" )   #escribo parametros utilizados

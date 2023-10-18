@@ -16,19 +16,19 @@ require("yaml")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento <- "TS7410_029"
+PARAM$experimento <- "TS7410_032"
 
-PARAM$exp_input  <- "FE7310_029"
+PARAM$exp_input  <- "FE7310_032"
 
 # me salteo los meses duros de pandemia, pero llego hasta 201907 en training
 # entreno en 18 meses
 
 PARAM$future       <- c( 202109 )
-PARAM$final_train  <- c( 202107, 202106, 202105, 202104, 202103, 202102, 202101, 202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202004, 202003, 202002)
+PARAM$final_train  <- c( 202108, 202107, 202106, 202105, 202104, 202103, 202102, 202101, 202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202002, 202001)
 
-PARAM$train$training     <- c( 202101, 202012, 202011, 202010, 202009, 202008,  202007, 202006, 202005, 202004, 202003, 202002, 202001, 201912, 201911, 201910, 201909, 201908 )
-PARAM$train$validation   <- c( 202106, 202104, 202102 )
-PARAM$train$testing      <- c( 202107, 202105, 202103 )
+PARAM$train$training     <- c( 202106, 202105, 202104, 202103, 202012, 202011, 202010, 202009, 202008,  202007, 202006, 202005, 202002, 202001, 201912, 201911, 201910, 201909 )
+PARAM$train$validation   <- c( 202107, 202101, 202003, 201907)
+PARAM$train$testing      <- c( 202108, 202102, 202004, 201908 )
 
 # Atencion  0.4  de  undersampling de la clase mayoritaria,  los CONTINUA
 PARAM$train$undersampling  <- 0.4   # 1.0 significa NO undersampling ,  0.1  es quedarse con el 10% de los CONTINUA
@@ -66,13 +66,13 @@ setwd( PARAM$home )
 
 #cargo el dataset donde voy a entrenar
 #esta en la carpeta del exp_input y siempre se llama  dataset.csv.gz
-dataset_input  <- paste0( "./exp029/", PARAM$exp_input, "/dataset.csv.gz" )
+dataset_input  <- paste0( "./exp032/", PARAM$exp_input, "/dataset.csv.gz" )
 dataset  <- fread( dataset_input )
 
 
 #creo la carpeta donde va el experimento
-dir.create( paste0( "./exp029/", PARAM$experimento, "/"), showWarnings = FALSE )
-setwd(paste0( "./exp029/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( paste0( "./exp032/", PARAM$experimento, "/"), showWarnings = FALSE )
+setwd(paste0( "./exp032/", PARAM$experimento, "/"))   #Establezco el Working Directory DEL EXPERIMENTO
 
 GrabarOutput()
 write_yaml( PARAM, file= "parametros.yml" )   #escribo parametros utilizados
